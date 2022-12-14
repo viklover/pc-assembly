@@ -30,9 +30,10 @@ CREATE TABLE ram
     FOREIGN KEY (type) references ram_type (name)
 );
 
-CREATE TABLE motherboard
+CREATE TABLE board
 (
     id               INTEGER PRIMARY KEY AUTO_INCREMENT,
+    name             VARCHAR(100) UNIQUE NOT NULL,
     cpu_architecture VARCHAR(10),
     ram_type         VARCHAR(20),
     ram_slots        INTEGER DEFAULT 0,
@@ -54,6 +55,6 @@ CREATE TABLE assembly
     cpu_id             INTEGER NOT NULL,
     ram_combination_id INTEGER NOT NULL,
     FOREIGN KEY (cpu_id) references cpu (id),
-    FOREIGN KEY (motherboard_id) references motherboard (id),
+    FOREIGN KEY (motherboard_id) references board (id),
     FOREIGN KEY (ram_combination_id) references ram_Combination (id)
 );
