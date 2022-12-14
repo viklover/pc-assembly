@@ -12,7 +12,7 @@ class CpuRepository(
     private val sqlPreparedStatementBuilder: SqlPreparedStatementBuilder
 ) {
 
-    fun create(cpu: Cpu): String {
+    fun create(cpu: Cpu): Cpu {
 
         val parameters = MapSqlParameterSource()
         parameters.addValue("name", cpu.name)
@@ -23,7 +23,13 @@ class CpuRepository(
 
         template.update(sqlPreparedStatementBuilder.insert("cpu", parameters), parameters)
 
-        return cpu.name;
+        return Cpu(
+            name = cpu.name,
+            architecture = cpu.architecture,
+            speed = cpu.speed,
+            ramType = cpu.ramType,
+            maxRamCapacity = cpu.maxRamCapacity
+        )
     }
 
     fun update(cpu: Cpu): Cpu {

@@ -8,14 +8,7 @@ class CpuService(
 ) {
 
     fun create(cpu: Cpu): Cpu {
-
-        return Cpu(
-                name = cpuRepository.create(cpu),
-                architecture = cpu.architecture,
-                speed = cpu.speed,
-                ramType = cpu.ramType,
-                maxRamCapacity = cpu.maxRamCapacity
-        )
+        return cpuRepository.create(cpu)
     }
 
     fun update(cpu: Cpu): Cpu {

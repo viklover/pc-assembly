@@ -23,10 +23,10 @@ CREATE TABLE cpu
 CREATE TABLE ram
 (
     id       INTEGER PRIMARY KEY AUTO_INCREMENT,
-    name     VARCHAR(100) NOT NULL,
-    type     VARCHAR(20)  NOT NULL,
-    speed    DOUBLE(2, 1) NOT NULL,
-    capacity LONG         NOT NULL,
+    name     VARCHAR(100) UNIQUE NOT NULL,
+    type     VARCHAR(20)         NOT NULL,
+    speed    INTEGER             NOT NULL,
+    capacity LONG                NOT NULL,
     FOREIGN KEY (type) references ram_type (name)
 );
 
@@ -42,9 +42,9 @@ CREATE TABLE motherboard
 
 CREATE TABLE ram_combination
 (
-    id INTEGER PRIMARY KEY AUTO_INCREMENT,
-    ram_id         INTEGER NOT NULL,
-    count          INTEGER DEFAULT 0,
+    id     INTEGER PRIMARY KEY AUTO_INCREMENT,
+    ram_id INTEGER NOT NULL,
+    count  INTEGER DEFAULT 0,
     FOREIGN KEY (ram_id) references ram (id)
 );
 
