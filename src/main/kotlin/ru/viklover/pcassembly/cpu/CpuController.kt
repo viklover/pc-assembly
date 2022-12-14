@@ -1,4 +1,4 @@
-package ru.viklover.pcassembly.processor
+package ru.viklover.pcassembly.cpu
 
 import org.springframework.web.bind.annotation.CrossOrigin
 import org.springframework.web.bind.annotation.GetMapping
@@ -11,22 +11,22 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @CrossOrigin
 @RequestMapping("/processors")
-class ProcessController(
-    val processorService: ProcessorService
+class CpuController(
+    val cpuService: CpuService
 ) {
 
     @PostMapping
-    fun create(@RequestBody processor: Processor): Processor {
-        return processorService.create(processor)
+    fun create(@RequestBody cpu: Cpu): Cpu {
+        return cpuService.create(cpu)
     }
 
     @PutMapping
-    fun update(@RequestBody processor: Processor): Processor {
-        return processorService.update(processor)
+    fun update(@RequestBody cpu: Cpu): Cpu {
+        return cpuService.update(cpu)
     }
 
     @GetMapping
-    fun getAll(): List<Processor> {
-        return processorService.findAll()
+    fun getAll(): List<Cpu> {
+        return cpuService.findAll()
     }
 }

@@ -4,7 +4,7 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource
 import org.springframework.stereotype.Service
 
 @Service
-class SqlQueryBuilder {
+class SqlPreparedStatementBuilder {
 
     fun select(table: String): String {
         return "SELECT * FROM `$table`"
