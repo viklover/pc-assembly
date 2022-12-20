@@ -18,4 +18,8 @@ class RamService(
     fun findAll(): List<Ram> {
         return ramRepository.findAll();
     }
+
+    fun getModelFields(): List<String> {
+        return ramRepository.getModelFields();
+    }
 }

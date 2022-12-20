@@ -18,4 +18,9 @@ class CpuService(
     fun findAll(): List<Cpu> {
         return cpuRepository.findAll();
     }
+
+    fun getModelFields(): List<String> {
+        return cpuRepository.getModelFields();
+    }
+
 }

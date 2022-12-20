@@ -18,4 +18,8 @@ class BoardService(
     fun findAll(): List<Board> {
         return boardRepository.findAll();
     }
+
+    fun getModelFields(): List<String> {
+        return boardRepository.getModelFields();
+    }
 }

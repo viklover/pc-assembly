@@ -4,12 +4,14 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate
 import org.springframework.stereotype.Repository
 
-import ru.viklover.pcassembly.util.SqlPreparedStatementBuilder
+import ru.viklover.pcassembly.service.ModelService
+import ru.viklover.pcassembly.util.sql.SqlPreparedStatementBuilder
 
 @Repository
 class BoardRepository(
     private val template: NamedParameterJdbcTemplate,
-    private val sqlPreparedStatementBuilder: SqlPreparedStatementBuilder
+    private val sqlPreparedStatementBuilder: SqlPreparedStatementBuilder,
+    private val modelService: ModelService
 ) {
 
     fun create(board: Board): Board {
@@ -46,12 +48,16 @@ class BoardRepository(
         )
 
         return template.query(
-                sqlPreparedStatementBuilder.select("board", conditions),
+                sqlPreparedStatementBuilder.selectAll("board", conditions),
                 conditions,
                 BoardRowMapper()).first();
     }
 
     fun findAll(): List<Board> {
-        return template.query(sqlPreparedStatementBuilder.select("board"), BoardRowMapper())
+        return template.query(sqlPreparedStatementBuilder.selectAll("board"), BoardRowMapper())
+    }
+
+    fun getModelFields(): List<String> {
+        return modelService.getModelFields("board")
     }
 }

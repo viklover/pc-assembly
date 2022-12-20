@@ -41,20 +41,22 @@ CREATE TABLE board
     FOREIGN KEY (ram_type) references ram_type (name)
 );
 
-CREATE TABLE ram_combination
-(
-    id     INTEGER PRIMARY KEY AUTO_INCREMENT,
-    ram_id INTEGER NOT NULL,
-    count  INTEGER DEFAULT 0,
-    FOREIGN KEY (ram_id) references ram (id)
-);
-
 CREATE TABLE assembly
 (
-    motherboard_id     INTEGER NOT NULL,
-    cpu_id             INTEGER NOT NULL,
-    ram_combination_id INTEGER NOT NULL,
+    id             INTEGER PRIMARY KEY AUTO_INCREMENT,
+    motherboard_id INTEGER,
+    cpu_id         INTEGER,
     FOREIGN KEY (cpu_id) references cpu (id),
-    FOREIGN KEY (motherboard_id) references board (id),
-    FOREIGN KEY (ram_combination_id) references ram_Combination (id)
+    FOREIGN KEY (motherboard_id) references board (id)
 );
+
+CREATE TABLE ram_combination
+(
+    id          INTEGER PRIMARY KEY AUTO_INCREMENT,
+    assembly_id INTEGER NOT NULL,
+    ram_id      INTEGER NOT NULL,
+    count       INTEGER DEFAULT 0,
+    FOREIGN KEY (ram_id) references ram (id),
+    FOREIGN KEY (assembly_id) references assembly (id) on delete cascade
+);
+

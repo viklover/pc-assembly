@@ -3,14 +3,15 @@ package ru.viklover.pcassembly.ram
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate
 import org.springframework.stereotype.Repository
-import ru.viklover.pcassembly.cpu.CpuRowMapper
 
-import ru.viklover.pcassembly.util.SqlPreparedStatementBuilder
+import ru.viklover.pcassembly.service.ModelService
+import ru.viklover.pcassembly.util.sql.SqlPreparedStatementBuilder
 
 @Repository
 class RamRepository(
     private val template: NamedParameterJdbcTemplate,
-    private val sqlPreparedStatementBuilder: SqlPreparedStatementBuilder
+    private val sqlPreparedStatementBuilder: SqlPreparedStatementBuilder,
+    private val modelService: ModelService
 ) {
 
     fun create(ram: Ram): Ram {
@@ -47,12 +48,16 @@ class RamRepository(
         )
 
         return template.query(
-                sqlPreparedStatementBuilder.select("ram", conditions),
+                sqlPreparedStatementBuilder.selectAll("ram", conditions),
                 conditions,
                 RamRowMapper()).first();
     }
 
     fun findAll(): List<Ram> {
-        return template.query(sqlPreparedStatementBuilder.select("ram"), RamRowMapper())
+        return template.query(sqlPreparedStatementBuilder.selectAll("ram"), RamRowMapper())
+    }
+
+    fun getModelFields(): List<String> {
+        return modelService.getModelFields("ram")
     }
 }

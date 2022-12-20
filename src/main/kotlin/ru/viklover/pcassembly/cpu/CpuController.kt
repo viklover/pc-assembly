@@ -8,11 +8,14 @@ import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
+import ru.viklover.pcassembly.cpu.architecture.CpuArchitectureRepository
+
 @RestController
 @CrossOrigin
-@RequestMapping("/processors")
+@RequestMapping("/cpu")
 class CpuController(
-    val cpuService: CpuService
+    val cpuService: CpuService,
+    val cpuArchitectureRepository: CpuArchitectureRepository
 ) {
 
     @PostMapping
@@ -26,7 +29,17 @@ class CpuController(
     }
 
     @GetMapping
-    fun getAll(): List<Cpu> {
+    fun findAll(): List<Cpu> {
         return cpuService.findAll()
+    }
+
+    @GetMapping("fields")
+    fun getModelFields(): List<String> {
+        return cpuService.getModelFields()
+    }
+
+    @GetMapping("architecture")
+    fun getAllArchitectures(): List<String> {
+        return cpuArchitectureRepository.findAll();
     }
 }

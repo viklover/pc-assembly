@@ -1,15 +1,18 @@
 package ru.viklover.pcassembly.cpu
 
-import org.springframework.jdbc.core.namedparam.MapSqlParameterSource
-import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate
 import org.springframework.stereotype.Repository
 
-import ru.viklover.pcassembly.util.SqlPreparedStatementBuilder
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate
+
+import ru.viklover.pcassembly.service.ModelService
+import ru.viklover.pcassembly.util.sql.SqlPreparedStatementBuilder
 
 @Repository
 class CpuRepository(
     private val template: NamedParameterJdbcTemplate,
-    private val sqlPreparedStatementBuilder: SqlPreparedStatementBuilder
+    private val sqlPreparedStatementBuilder: SqlPreparedStatementBuilder,
+    private val modelService: ModelService
 ) {
 
     fun create(cpu: Cpu): Cpu {
@@ -49,12 +52,16 @@ class CpuRepository(
         )
 
         return template.query(
-                sqlPreparedStatementBuilder.select("cpu", conditions),
+                sqlPreparedStatementBuilder.selectAll("cpu", conditions),
                 conditions,
                 CpuRowMapper()).first();
     }
 
     fun findAll(): List<Cpu> {
-        return template.query(sqlPreparedStatementBuilder.select("cpu"), CpuRowMapper())
+        return template.query(sqlPreparedStatementBuilder.selectAll("cpu"), CpuRowMapper())
+    }
+
+    fun getModelFields(): List<String> {
+        return modelService.getModelFields("cpu")
     }
 }
