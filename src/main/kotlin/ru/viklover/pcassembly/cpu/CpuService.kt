@@ -8,19 +8,14 @@ class CpuService(
 ) {
 
     fun create(cpu: Cpu): Cpu {
-        return cpuRepository.create(cpu)
+        return cpuRepository.save(cpu)
     }
 
     fun update(cpu: Cpu): Cpu {
-        return cpuRepository.update(cpu)
+        return cpuRepository.save(cpu)
     }
 
-    fun findAll(): List<Cpu> {
-        return cpuRepository.findAll();
+    fun findAll(): MutableIterable<Cpu> {
+        return cpuRepository.findAll()
     }
-
-    fun getModelFields(): List<String> {
-        return cpuRepository.getModelFields();
-    }
-
 }

@@ -8,18 +8,14 @@ class BoardService(
 ) {
 
     fun create(board: Board): Board {
-        return boardRepository.create(board)
+        return boardRepository.save(board)
     }
 
     fun update(board: Board): Board {
-        return boardRepository.update(board)
+        return boardRepository.save(board)
     }
 
-    fun findAll(): List<Board> {
+    fun findAll(): MutableIterable<Board> {
         return boardRepository.findAll();
-    }
-
-    fun getModelFields(): List<String> {
-        return boardRepository.getModelFields();
     }
 }

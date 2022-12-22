@@ -20,12 +20,7 @@ class BoardController(
     }
 
     @GetMapping
-    fun findAll(): List<Board> {
+    fun findAll(): MutableIterable<Board> {
         return boardService.findAll()
-    }
-
-    @GetMapping("fields")
-    fun getModelFields(): List<String> {
-        return boardService.getModelFields()
     }
 }

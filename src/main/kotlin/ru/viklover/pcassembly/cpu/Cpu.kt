@@ -1,8 +1,14 @@
 package ru.viklover.pcassembly.cpu
 
+import org.springframework.data.annotation.Id
+import org.springframework.data.relational.core.mapping.Table
+
 import com.fasterxml.jackson.annotation.JsonProperty
 
-class Cpu(
+@Table
+data class Cpu(
+    @Id
+    var id: Long,
     var name: String,
     var architecture: String,
     var speed: Int,

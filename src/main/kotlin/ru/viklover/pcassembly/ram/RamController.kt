@@ -2,14 +2,14 @@ package ru.viklover.pcassembly.ram
 
 import org.springframework.web.bind.annotation.*
 
-import ru.viklover.pcassembly.ram.type.RamTypeRepository
+import ru.viklover.pcassembly.ram.type.RamTypeService
 
 @RestController
 @CrossOrigin
 @RequestMapping("/ram")
 class RamController(
     val ramService: RamService,
-    val ramTypeRepository: RamTypeRepository
+    val ramTypeService: RamTypeService
 ) {
 
     @PostMapping
@@ -23,17 +23,12 @@ class RamController(
     }
 
     @GetMapping
-    fun findAll(): List<Ram> {
+    fun findAll(): MutableIterable<Ram> {
         return ramService.findAll()
     }
 
     @GetMapping("types")
     fun getAllTypes(): List<String> {
-        return ramTypeRepository.findAll();
-    }
-
-    @GetMapping("fields")
-    fun getModelFields(): List<String> {
-        return ramService.getModelFields()
+        return ramTypeService.findAll();
     }
 }

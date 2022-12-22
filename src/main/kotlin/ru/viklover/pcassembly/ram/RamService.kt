@@ -8,18 +8,14 @@ class RamService(
 ) {
 
     fun create(ram: Ram): Ram {
-        return ramRepository.create(ram)
+        return ramRepository.save(ram)
     }
 
     fun update(ram: Ram): Ram {
-        return ramRepository.update(ram)
+        return ramRepository.save(ram)
     }
 
-    fun findAll(): List<Ram> {
-        return ramRepository.findAll();
-    }
-
-    fun getModelFields(): List<String> {
-        return ramRepository.getModelFields();
+    fun findAll(): MutableIterable<Ram> {
+        return ramRepository.findAll()
     }
 }
