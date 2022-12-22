@@ -1,17 +1,26 @@
 package ru.viklover.pcassembly.cpu
 
+import com.fasterxml.jackson.annotation.JsonIgnore
+
 import org.springframework.data.annotation.Id
-import org.springframework.data.relational.core.mapping.Table
+import org.springframework.data.annotation.Transient
+import org.springframework.data.domain.Persistable
 
-import com.fasterxml.jackson.annotation.JsonProperty
-
-@Table
-data class Cpu(
-    @Id
-    var id: Long,
+data class Cpu (
+    @Id var id: Int,
     var name: String,
-    var architecture: String,
     var speed: Int,
-    @JsonProperty("ram_type") var ramType: String,
-    @JsonProperty("max_ram_capacity") var maxRamCapacity: Int
-)
+    var maxRamCapacity: Int
+) : Persistable<Int> {
+
+    @Transient
+    @JsonIgnore
+    private var _isNew = false
+
+    fun setNew(value: Boolean) {
+        _isNew = value
+    }
+
+    override fun isNew(): Boolean = _isNew
+    override fun getId(): Int = id
+}

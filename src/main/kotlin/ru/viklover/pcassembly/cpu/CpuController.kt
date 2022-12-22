@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
 import ru.viklover.pcassembly.cpu.architecture.CpuArchitectureService
+import ru.viklover.pcassembly.cpu.dto.CpuDto
 
 @RestController
 @CrossOrigin
@@ -19,17 +20,17 @@ class CpuController(
 ) {
 
     @PostMapping
-    fun create(@RequestBody cpu: Cpu): Cpu {
-        return cpuService.create(cpu)
+    fun create(@RequestBody cpuDto: CpuDto): CpuDto {
+        return cpuService.create(cpuDto)
     }
 
     @PutMapping
-    fun update(@RequestBody cpu: Cpu): Cpu {
+    fun update(@RequestBody cpu: CpuDto): CpuDto {
         return cpuService.update(cpu)
     }
 
     @GetMapping
-    fun findAll(): MutableIterable<Cpu> {
+    fun findAll(): List<CpuDto> {
         return cpuService.findAll()
     }
 

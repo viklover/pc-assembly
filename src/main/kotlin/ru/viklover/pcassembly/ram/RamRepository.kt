@@ -4,4 +4,4 @@ import org.springframework.data.repository.CrudRepository
 import org.springframework.stereotype.Repository
 
 @Repository
-interface RamRepository : CrudRepository<Ram, Long>
+interface RamRepository : CrudRepository<Ram, Int>
