@@ -4,7 +4,7 @@ import org.springframework.stereotype.Service
 
 import ru.viklover.pcassembly.cpu.architecture.CpuArchitectureService
 import ru.viklover.pcassembly.ram.type.RamTypeService
-import ru.viklover.pcassembly.utli.IdService
+import ru.viklover.pcassembly.util.IdService
 
 @Service
 class BoardService(

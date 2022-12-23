@@ -3,7 +3,7 @@ package ru.viklover.pcassembly.ram
 import org.springframework.stereotype.Service
 
 import ru.viklover.pcassembly.ram.type.RamTypeService
-import ru.viklover.pcassembly.utli.IdService
+import ru.viklover.pcassembly.util.IdService
 
 @Service
 class RamService(
@@ -48,9 +48,6 @@ class RamService(
         val ram = ramRepository.findByPartId(ramDto.partId)
 
         if (ramTypeService.findById(idService.getRamTypeFromId(ram.id)) != ramDto.type) {
-
-            println(ramTypeService.findById(idService.getRamTypeFromId(ram.id)))
-            println(ramDto.type)
 
             ram.id = idService.createIdByCpuArchitectureAndRamType(
                     CPU_ARCHITECTURE,

@@ -1,4 +1,4 @@
-package ru.viklover.pcassembly.utli
+package ru.viklover.pcassembly.util
 
 import org.springframework.stereotype.Service
 
