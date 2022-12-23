@@ -13,17 +13,17 @@ class RamController(
 ) {
 
     @PostMapping
-    fun create(@RequestBody ram: Ram): Ram {
+    fun create(@RequestBody ram: RamDto): RamDto {
         return ramService.create(ram)
     }
 
     @PutMapping
-    fun update(@RequestBody ram: Ram): Ram {
+    fun update(@RequestBody ram: RamDto): RamDto {
         return ramService.update(ram)
     }
 
     @GetMapping
-    fun findAll(): MutableIterable<Ram> {
+    fun findAll(): List<RamDto> {
         return ramService.findAll()
     }
 

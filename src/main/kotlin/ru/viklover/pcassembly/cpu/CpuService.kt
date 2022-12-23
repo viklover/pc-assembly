@@ -2,7 +2,6 @@ package ru.viklover.pcassembly.cpu
 
 import org.springframework.stereotype.Service
 import ru.viklover.pcassembly.cpu.architecture.CpuArchitectureService
-import ru.viklover.pcassembly.cpu.dto.CpuDto
 import ru.viklover.pcassembly.ram.type.RamTypeService
 import ru.viklover.pcassembly.utli.IdService
 
@@ -42,7 +41,7 @@ class CpuService(
 
     fun update(cpuDto: CpuDto): CpuDto {
 
-        val cpu = cpuRepository.findById(cpuDto.partId).get()
+        val cpu = cpuRepository.findByPartId(cpuDto.partId).get()
 
         if (cpuArchitectureService.findById(idService.getCpuArchitectureFromId(cpu.id)) != cpuDto.architecture ||
                 ramTypeService.findById(idService.getRamTypeFromId(cpu.id)) != cpuDto.ramType) {

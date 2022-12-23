@@ -1,4 +1,4 @@
-package ru.viklover.pcassembly.cpu.dto
+package ru.viklover.pcassembly.cpu
 
 import com.fasterxml.jackson.annotation.JsonProperty
 

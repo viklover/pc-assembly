@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
 import ru.viklover.pcassembly.cpu.architecture.CpuArchitectureService
-import ru.viklover.pcassembly.cpu.dto.CpuDto
 
 @RestController
 @CrossOrigin

@@ -1,12 +1,12 @@
 package ru.viklover.pcassembly.ram
 
+import com.fasterxml.jackson.annotation.JsonProperty
 import org.springframework.data.annotation.Id
-import ru.viklover.pcassembly.model.PersistableImpl
 
-data class Ram(
-    @Id
-    var id: Int,
+data class RamDto(
+    @Id @JsonProperty("id") var partId: Int,
     var name: String,
+    var type: String,
     var speed: Int,
     var capacity: Int
-) : PersistableImpl<Int>(id)
+)

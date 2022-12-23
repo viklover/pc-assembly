@@ -13,7 +13,7 @@ interface CpuRepository : CrudRepository<Cpu, Int> {
     fun getLastPartId(): Int?
 
     @Query("select * from cpu where (id & 0xFF) = :id limit 1")
-    override fun findById(id: Int): Optional<Cpu>
+    fun findByPartId(id: Int): Optional<Cpu>
 
     @Modifying
     @Query("update cpu set id = :id where (id & 0xFF) = :partId")
