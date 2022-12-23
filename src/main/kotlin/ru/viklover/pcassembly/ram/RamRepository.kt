@@ -13,7 +13,7 @@ interface RamRepository : CrudRepository<Ram, Int> {
     fun getLastPartId(): Int?
 
     @Query("select * from ram where (id & 0xFF) = :id limit 1")
-    fun findByPartId(id: Int): Optional<Ram>
+    fun findByPartId(id: Int): Ram
 
     @Modifying
     @Query("update ram set id = :id where (id & 0xFF) = :partId")

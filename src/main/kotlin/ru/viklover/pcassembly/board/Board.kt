@@ -3,10 +3,10 @@ package ru.viklover.pcassembly.board
 import com.fasterxml.jackson.annotation.JsonProperty
 import org.springframework.data.annotation.Id
 
+import ru.viklover.pcassembly.model.PersistableImpl
+
 data class Board(
-    @Id var id: Long,
+    @Id var id: Int,
     var name: String,
-    @JsonProperty("cpu_architecture") var cpuArchitecture: String,
-    @JsonProperty("ram_type") var ramType: String,
     @JsonProperty("ram_slots") var ramSlots: Int
-)
+) : PersistableImpl<Int>(id)

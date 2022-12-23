@@ -10,17 +10,17 @@ class BoardController(
 ) {
 
     @PostMapping
-    fun create(@RequestBody board: Board): Board {
+    fun create(@RequestBody board: BoardDto): BoardDto {
         return boardService.create(board)
     }
 
     @PutMapping
-    fun update(@RequestBody board: Board): Board {
+    fun update(@RequestBody board: BoardDto): BoardDto {
         return boardService.update(board)
     }
 
     @GetMapping
-    fun findAll(): MutableIterable<Board> {
+    fun findAll(): List<BoardDto> {
         return boardService.findAll()
     }
 }

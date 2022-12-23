@@ -15,11 +15,13 @@ class CpuService(
 
     fun create(cpuDto: CpuDto): CpuDto {
 
+        val partId = getLastPartId() + 1
+
         val newCpu = Cpu(
             id = idService.createIdByCpuArchitectureAndRamType(
                     cpuArchitectureService.findIdByName(cpuDto.architecture),
                     ramTypeService.findIdByName(cpuDto.ramType),
-                    getLastPartId() + 1),
+                    partId),
             name = cpuDto.name,
             speed = cpuDto.speed,
             maxRamCapacity = cpuDto.maxRamCapacity
@@ -30,7 +32,7 @@ class CpuService(
         cpuRepository.save(newCpu)
 
         return CpuDto (
-                partId = idService.getIdPartFromId(newCpu.id),
+                partId = partId,
                 name = cpuDto.name,
                 speed = cpuDto.speed,
                 architecture = cpuDto.architecture,
@@ -41,7 +43,7 @@ class CpuService(
 
     fun update(cpuDto: CpuDto): CpuDto {
 
-        val cpu = cpuRepository.findByPartId(cpuDto.partId).get()
+        val cpu = cpuRepository.findByPartId(cpuDto.partId)
 
         if (cpuArchitectureService.findById(idService.getCpuArchitectureFromId(cpu.id)) != cpuDto.architecture ||
                 ramTypeService.findById(idService.getRamTypeFromId(cpu.id)) != cpuDto.ramType) {

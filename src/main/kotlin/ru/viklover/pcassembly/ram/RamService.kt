@@ -18,11 +18,13 @@ class RamService(
 
     fun create(ramDto: RamDto): RamDto {
 
+        val partId = getLastPartId() + 1
+
         val newRam = Ram(
                 id = idService.createIdByCpuArchitectureAndRamType(
                         CPU_ARCHITECTURE,
                         ramTypeService.findIdByName(ramDto.type),
-                        getLastPartId() + 1),
+                        partId),
                 name = ramDto.name,
                 speed = ramDto.speed,
                 capacity = ramDto.capacity
@@ -33,7 +35,7 @@ class RamService(
         ramRepository.save(newRam)
 
         return RamDto(
-                partId = idService.getIdPartFromId(newRam.id),
+                partId = partId,
                 name = ramDto.name,
                 speed = ramDto.speed,
                 type = ramDto.type,
@@ -43,7 +45,7 @@ class RamService(
 
     fun update(ramDto: RamDto): RamDto {
 
-        val ram = ramRepository.findByPartId(ramDto.partId).get()
+        val ram = ramRepository.findByPartId(ramDto.partId)
 
         if (ramTypeService.findById(idService.getRamTypeFromId(ram.id)) != ramDto.type) {
 
