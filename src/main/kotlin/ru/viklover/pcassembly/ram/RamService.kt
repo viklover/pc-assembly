@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service
 
 import ru.viklover.pcassembly.ram.type.RamTypeService
 import ru.viklover.pcassembly.util.IdService
+import java.util.*
 
 @Service
 class RamService(
@@ -69,6 +70,30 @@ class RamService(
 
     fun findAll(): List<RamDto> {
         return ramRepository.findAll().map {
+            return@map RamDto(
+                    partId = idService.getIdPartFromId(it.id),
+                    name = it.name,
+                    speed = it.speed,
+                    capacity = it.capacity,
+                    type = ramTypeService.findById(idService.getRamTypeFromId(it.id)),
+            )
+        }
+    }
+
+    fun findById(ramId: Int): Optional<RamDto>? {
+        return ramRepository.findById(ramId).map {
+            RamDto(
+                partId = idService.getIdPartFromId(ramId),
+                name = it.name,
+                speed = it.speed,
+                capacity = it.capacity,
+                type = ramTypeService.findById(idService.getRamTypeFromId(it.id))
+            )
+        }
+    }
+
+    fun findByType(type: String): List<RamDto> {
+        return ramRepository.findByType(ramTypeService.findIdByName(type)).map {
             return@map RamDto(
                     partId = idService.getIdPartFromId(it.id),
                     name = it.name,

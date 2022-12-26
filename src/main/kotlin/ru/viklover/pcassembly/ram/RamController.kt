@@ -23,7 +23,12 @@ class RamController(
     }
 
     @GetMapping
-    fun findAll(): List<RamDto> {
+    fun findAll(@RequestParam(name = "type", defaultValue = "") type: String): List<RamDto> {
+
+        if (type != "") {
+            return ramService.findByType(type)
+        }
+
         return ramService.findAll()
     }
 
