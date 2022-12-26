@@ -15,6 +15,9 @@ interface RamRepository : CrudRepository<Ram, Int> {
     @Query("select * from ram where (id & 0xFF) = :id limit 1")
     fun findByPartId(id: Int): Ram
 
+    @Query("select * from ram where ((id >> 8) & 0x0F) = :ramTypeId")
+    fun findByType(ramTypeId: Int): List<Ram>
+
     @Modifying
     @Query("update ram set id = :id where (id & 0xFF) = :partId")
     fun updateIdByPartId(id: Int, partId: Int)

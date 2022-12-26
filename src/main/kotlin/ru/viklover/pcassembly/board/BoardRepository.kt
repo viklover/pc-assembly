@@ -4,6 +4,7 @@ import org.springframework.data.jdbc.repository.query.Modifying
 import org.springframework.data.jdbc.repository.query.Query
 import org.springframework.data.repository.CrudRepository
 import org.springframework.stereotype.Repository
+import ru.viklover.pcassembly.cpu.architecture.CpuArchitecture
 
 @Repository
 interface BoardRepository : CrudRepository<Board, Int> {
@@ -13,6 +14,9 @@ interface BoardRepository : CrudRepository<Board, Int> {
 
     @Query("select * from board where (id & 0xFF) = :id limit 1")
     fun findByPartId(id: Int): Board
+
+    @Query("select * from board where (id >> 12) = :cpuArchitectureId AND ((id >> 8) & 0x0F) = :ramTypeId")
+    fun findByCpuArchitectureAndRamType(cpuArchitectureId: Int, ramTypeId: Int): List<Board>
 
     @Modifying
     @Query("update board set id = :id where (id & 0xFF) = :partId")

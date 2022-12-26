@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service
 import ru.viklover.pcassembly.cpu.architecture.CpuArchitectureService
 import ru.viklover.pcassembly.ram.type.RamTypeService
 import ru.viklover.pcassembly.util.IdService
+import java.util.*
 
 @Service
 class BoardService(
@@ -67,6 +68,43 @@ class BoardService(
 
     fun findAll(): List<BoardDto> {
         return boardRepository.findAll().map {
+            BoardDto(
+                partId = idService.getIdPartFromId(it.id),
+                name = it.name,
+                cpuArchitecture = cpuArchitectureService.findById(
+                        idService.getCpuArchitectureFromId(it.id)),
+                ramType = ramTypeService.findById(
+                        idService.getRamTypeFromId(it.id)
+                ),
+                ramSlots = it.ramSlots
+            )
+        };
+    }
+
+    fun findById(boardId: Int): Optional<BoardDto> {
+        return boardRepository.findById(boardId).map {
+            BoardDto(
+                partId = idService.getIdPartFromId(it.id),
+                name = it.name,
+                cpuArchitecture = cpuArchitectureService.findById(
+                        idService.getCpuArchitectureFromId(it.id)),
+                ramType = ramTypeService.findById(
+                        idService.getRamTypeFromId(it.id)
+                ),
+                ramSlots = it.ramSlots
+            )
+        }
+    }
+
+    fun getLastPartId(): Int {
+        return boardRepository.getLastPartId() ?: 0
+    }
+
+    fun findByCpuArchitectureAndRamType(cpuArchitecture: String, ramType: String): List<BoardDto> {
+        return boardRepository.findByCpuArchitectureAndRamType(
+                cpuArchitectureService.findIdByName(cpuArchitecture),
+                ramTypeService.findIdByName(ramType)
+        ).map {
             return@map BoardDto(
                     partId = idService.getIdPartFromId(it.id),
                     name = it.name,
@@ -77,10 +115,6 @@ class BoardService(
                     ),
                     ramSlots = it.ramSlots
             )
-        };
-    }
-
-    fun getLastPartId(): Int {
-        return boardRepository.getLastPartId() ?: 0
+        }
     }
 }

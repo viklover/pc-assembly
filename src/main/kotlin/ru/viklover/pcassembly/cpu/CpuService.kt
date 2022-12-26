@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service
 import ru.viklover.pcassembly.cpu.architecture.CpuArchitectureService
 import ru.viklover.pcassembly.ram.type.RamTypeService
 import ru.viklover.pcassembly.util.IdService
+import java.util.*
 
 @Service
 class CpuService(
@@ -69,6 +70,22 @@ class CpuService(
     fun findAll(): List<CpuDto> {
         return cpuRepository.findAll().map {
             return@map CpuDto (
+                    partId = idService.getIdPartFromId(it.id),
+                    name = it.name,
+                    speed = it.speed,
+                    architecture = cpuArchitectureService.findById(
+                            idService.getCpuArchitectureFromId(it.id)),
+                    ramType = ramTypeService.findById(
+                            idService.getRamTypeFromId(it.id)
+                    ),
+                    maxRamCapacity = it.maxRamCapacity
+            )
+        }
+    }
+
+    fun findById(cpuId: Int): Optional<CpuDto> {
+        return cpuRepository.findById(cpuId).map {
+            CpuDto(
                     partId = idService.getIdPartFromId(it.id),
                     name = it.name,
                     speed = it.speed,
