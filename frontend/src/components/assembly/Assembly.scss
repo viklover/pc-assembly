@@ -1,0 +1,67 @@
+
+$record-background: #cecece;
+$record-hover: #e7e7e7;
+
+.model-assembly {
+  transition: 0.5s;
+
+  &:hover {
+    background-color: $record-hover;
+  }
+
+  .title {
+    color: #a10000;
+    margin-top: 0;
+    font-weight: bold;
+  }
+}
+
+.model-assembly__valid {
+  .title {
+    color: black;
+  }
+}
+
+.components {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  transition: 0.5s;
+
+  .component {
+
+    .component-properties {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      border: 2px solid rgba(133, 133, 133, 0.34);
+      border-radius: 3px;
+      padding: 3px;
+
+      p {
+        margin: 0;
+        font-size: 15px;
+      }
+    }
+
+    .ram-combination {
+
+      .ram {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        gap: 5px;
+        border: 2px solid rgba(133, 133, 133, 0.34);
+        border-radius: 3px;
+        padding: 3px;
+      }
+
+    }
+
+    .title {
+      color: black;
+      margin-bottom: 2px;
+      font-size: 15px;
+    }
+  }
+}

@@ -1,0 +1,34 @@
+
+$record-background: #cecece;
+$record-hover: #e7e7e7;
+
+.model {
+  height: 20px;
+  overflow: hidden;
+  transition: 0.25s;
+  background-color: $record-background;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+
+  &:hover {
+    height: 200px;
+    background-color: $record-hover;
+  }
+
+  h3 {
+    margin: 0;
+  }
+}
+
+.model-processor:hover {
+  height: 160px;
+}
+
+.model-ram:hover {
+  height: 130px;
+}
+
+.model-board:hover {
+  height: 130px;
+}

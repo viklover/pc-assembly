@@ -1,0 +1,41 @@
+body {
+  margin: 0;
+  font-family: "Arial", sans-serif;
+  background-color: white;
+}
+
+.content {
+  max-width: 1024px;
+  padding: 0 40px;
+  margin: 20px auto;
+}
+
+.head .content {
+  margin: 0 auto;
+}
+
+.button {
+  display: block;
+  background: #3E3E3E;
+  font-size: 17px;
+  font-weight: bold;
+  color: white;
+  padding: 7px 12px;
+  width: max-content;
+  border: 2px solid #3E3E3E;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+  transition: 0.17s;
+}
+
+.button:hover {
+  background-color: #FFFFFF;
+  color: #3E3E3E;
+}
+
+.button-14 {
+  font-size: 14px;
+}
+
+/*# sourceMappingURL=App.css.map */
