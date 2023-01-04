@@ -1,0 +1,136 @@
+.form {
+  display: none;
+  width: 400px;
+  border: 2px solid gray;
+  border-radius: 5px;
+  background-color: white;
+  padding: 15px 20px 70px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  z-index: 12;
+}
+.form .form__header {
+  font-size: 20px;
+  margin: 0 0 20px;
+}
+.form .form__button {
+  position: absolute;
+  right: 20px;
+  bottom: 15px;
+}
+.form .form__button-delete {
+  position: absolute;
+  left: 20px;
+  bottom: 15px;
+}
+.form main {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.form .form__field {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.form .form__field .form__field-name {
+  margin-bottom: 0;
+  font-size: 17px;
+}
+.form .form__field .ram_editor .ram_editor-header select {
+  margin-left: 8px;
+}
+.form .form__field .ram_editor .ram_list {
+  height: 90px;
+  overflow-y: scroll;
+}
+.form .form__field .ram_editor .ram_list .ram_list-item {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+}
+.form .form__field input {
+  height: 30px;
+  background: #FFFFFF;
+  border: 2px solid rgba(159, 159, 159, 0.47);
+  box-shadow: 0 0 0 rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+  padding-left: 10px;
+  font-size: 15px;
+}
+.form .form__field textarea {
+  height: 30px;
+  background: #FFFFFF;
+  border: 2px solid rgba(159, 159, 159, 0.47);
+  box-shadow: 0 0 0 rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+  padding-left: 10px;
+  font-size: 15px;
+  resize: none;
+}
+.form .form__field select {
+  height: 34px;
+  background: #FFFFFF;
+  border: 2px solid rgba(159, 159, 159, 0.47);
+  box-shadow: 0 0 0 rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+  padding-left: 10px;
+  font-size: 15px;
+}
+.form .error_text {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  font-size: 15px;
+  color: red;
+}
+.form .disabled {
+  cursor: not-allowed;
+}
+.form-active {
+  display: block;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  animation: opening_form 0.4s;
+}
+
+.modal-background-active {
+  display: block;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: rgba(255, 255, 255, 0.7);
+  z-index: 10;
+  animation: opening_background 0.4s;
+}
+
+@keyframes opening_background {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes opening_form {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+.black {
+  color: black;
+}
+
+.red {
+  color: red;
+}
+
+/*# sourceMappingURL=Form.css.map */

@@ -1,0 +1,8 @@
+.model-list {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-top: 10px;
+}
+
+/*# sourceMappingURL=ModelList.css.map */

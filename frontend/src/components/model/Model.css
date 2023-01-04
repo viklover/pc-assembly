@@ -1,0 +1,30 @@
+.model {
+  height: 20px;
+  overflow: hidden;
+  transition: 0.25s;
+  background-color: #cecece;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+.model:hover {
+  height: 200px;
+  background-color: #e7e7e7;
+}
+.model h3 {
+  margin: 0;
+}
+
+.model-processor:hover {
+  height: 160px;
+}
+
+.model-ram:hover {
+  height: 130px;
+}
+
+.model-board:hover {
+  height: 130px;
+}
+
+/*# sourceMappingURL=Model.css.map */

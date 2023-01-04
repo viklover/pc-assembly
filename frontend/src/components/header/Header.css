@@ -1,0 +1,44 @@
+.head {
+  padding: 5px 0;
+  background-color: #000000;
+}
+.head .menu-item {
+  font-size: 18px;
+  margin: 10px 0;
+  text-decoration: none;
+  color: #a9a9a9;
+}
+.head .menu-item:visited {
+  color: #a9a9a9;
+}
+.head .menu-item:hover {
+  color: gray;
+}
+.head .active {
+  color: white;
+}
+.head .active:visited {
+  color: white;
+}
+.head h3 {
+  display: block;
+  color: #a9a9a9;
+  font-weight: normal;
+}
+.head .container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: 40px;
+}
+.head .student-name {
+  display: none;
+}
+
+@media (min-width: 480px) {
+  .head .student-name {
+    display: inline-block;
+  }
+}
+
+/*# sourceMappingURL=Header.css.map */
